@@ -17,3 +17,5 @@ func main() {
 	total += amount
 	fmt.Printf("Total: %0.2f литров нужно", total)
 }
+
+//Chech Test Demi-Monde
