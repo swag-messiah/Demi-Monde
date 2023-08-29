@@ -1,51 +1,38 @@
+// tocelsius преобразует температуру в градусах по Фаренгейту
+// в градусы по Цельсию.
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"greeting"
 	"log"
+	"os"
+	"strconv"
+	"strings"
 )
 
-func paintNeeded(width float64, height float64) (float64, error) {
-	if width < 0 {
-		return 0, fmt.Errorf("Ширина %0.2f не подходит", width)
+func getFloat() (float64, error) {
+	reader := bufio.NewReader(os.Stdin)
+	input, err := reader.ReadString('\n')
+	if err != nil {
+		return 0, err
 	}
-	if height < 0 {
-		return 0, fmt.Errorf("Высота %0.2f не подходит", height)
+	input = strings.TrimSpace(input)
+	number, err := strconv.ParseFloat(input, 64)
+	if err != nil {
+		return 0, err
 	}
-
-	area := width * height
-	return area / 10.0, nil
+	return number, nil
 }
-
 func main() {
-	var amount, total float64
-	amount, err := paintNeeded(4.2, -3.0)
+	fmt.Print("Enter a temperature in Fahrenheit: ")
+	fahrenheit, err := getFloat()
 	if err != nil {
 		log.Fatal(err)
-	} else {
-		fmt.Printf("%0.2f литров нужно\n", amount)
 	}
-	total += amount
-	amount, err = paintNeeded(5.2, 3.5)
-	fmt.Printf("%0.2f литров нужно\n", amount)
-	total += amount
-	fmt.Printf("Total: %0.2f литров нужно", total)
+	celsius := (fahrenheit - 32) * 5 / 9
+	fmt.Printf("%0.2f degrees Celsius\n", celsius)
+	greeting.Hi()
+	greeting.Hello()
 }
-
-//Check Test Demi-Monde
-
-/*func main() {
-
-	myInt := 4
-	myIntPointer := &myInt
-	fmt.Println(myIntPointer)
-	fmt.Println(*myIntPointer)
-	myFloat := 98.6
-	myFloatPointer := &myFloat
-	fmt.Println(myFloatPointer)
-	fmt.Println(*myFloatPointer)
-	myBool := true
-	myBoolPointer := &myBool
-	fmt.Println(myBoolPointer)
-	fmt.Println(*myBoolPointer)
-}*/
