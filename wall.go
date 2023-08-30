@@ -1,5 +1,3 @@
-// tocelsius преобразует температуру в градусах по Фаренгейту
-// в градусы по Цельсию.
 package main
 
 import (
@@ -33,6 +31,4 @@ func main() {
 	}
 	celsius := (fahrenheit - 32) * 5 / 9
 	fmt.Printf("%0.2f degrees Celsius\n", celsius)
-	greeting.Hi()
-	greeting.Hello()
 }
